@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+// AJAX call for autocomplete 
+$(document).ready(function(){
+	$("#search-box").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "readCountry.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+	});
+});
+//To select country name
+function selectCountry(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+
+
+$(document).ready(function(){
+
+	var input_value;
+
+$("#getIt").click(function() {
+   input_value =  $('#text_box').val();
+  
+    $( "#div1" ).empty();
+	
+   console.log(input_value);
+   
+           $.ajax({url: "http://api.timezonedb.com/v2/get-time-zone?key=UHUNAPMYQ9J3&format=json&by=zone&zone="+ input_value +"", success: function(result){
+		console.log("in sucess");
+            //$("#div1").html(result);
+			console.log(result);
+			$( "#div1" ).append( "<p><font size='4'><u><b>City:-</b></u>: "+result["countryName"]+"</font></p>" );
+			$( "#div1" ).append( "<p><b>Country:-</b>: "+result["zoneName"]+"</p>" );
+			$( "#div1" ).append( "<p><b>Date and Time:-</b>: "+result["formatted"]+"</p>" );
+
+
+        }});
+   
+   
+   });
+});
+
+
+</script>
+</head>
+<body style="background:#fdd3ce ">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Weather Map</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="Weather.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="Time.html">Time</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div style="background:	#fdd3ce">
+<div id="heading" style="margin-left:35%"><h2><u>Date and Time</u></h2></div><br><br>
+	<div id ="form1" style="margin-left:34%">
+			<form action="/action_page.php" class="container-fluid"><b>
+			       Enter Country and City Name:-<br>Format (Country/City)</b><br><br>
+				
+				<input id ="text_box" type="text" name="noOfTables"/>
+			</form>
+	</div>
+<br>
+
+
+	<div id="buttonid">
+	<div id="button2" style="margin-left:2%">
+		<button id = "getIt" style="margin-left:35%; background-color: #e7e7e7; color:red; " >Get News</button>
+	</div><br>
+	</div>
+	<div class="w3-container">
+		<div id="div1" style="margin-left:15%; margin-right:10%; background:#ffe4e1; border-style: solid;">
+
+	</div>
+	
+	
+</div>
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	var input_value;
+
+$("#getIt").click(function() {
+   input_value =  $('#text_box').val();
+  
+    $( "#div1" ).empty();
+	$( "#div2" ).empty();
+	$( "#div3" ).empty();
+	$( "#div4" ).empty();
+	$( "#div5" ).empty();
+	$( "#div6" ).empty();
+   console.log(input_value);
+   
+           $.ajax({url: "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="+ input_value +"&&api-key=3d6e40bb709a413da3b5d1efda512e09", success: function(result){
+		console.log("in sucess");
+            //$("#div1").html(result);
+			console.log(result);
+			$( "#div1" ).append( "<p><font size='4'><u><b>Article1</b></u><a  href="+result["response"]["docs"][0]["web_url"]+" target='_blank'>: "+result["response"]["docs"][0]["web_url"]+"</a></font></p>" );
+			$( "#div1" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][0]["snippet"]+"</p>" );
+			$( "#div1" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][0]["lead_paragraph"]+"</p>" );
+			$( "#div2" ).append( "<p><font size='4'><u><b>Article2</b></u><a href="+result["response"]["docs"][1]["web_url"]+" target='_blank'>: "+result["response"]["docs"][1]["web_url"]+"</font></p>" );
+			$( "#div2" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][1]["snippet"]+"</p>" );
+			$( "#div2" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][1]["lead_paragraph"]+"</p>" );
+			$( "#div3" ).append( "<p><font size='4'><u><b>Article3</b></u><a href="+result["response"]["docs"][2]["web_url"]+" target='_blank'>: "+result["response"]["docs"][2]["web_url"]+"</font></p>" );
+			$( "#div3" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][2]["snippet"]+"</p>" );
+			$( "#div3" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][2]["lead_paragraph"]+"</p>" );
+			$( "#div4" ).append( "<p><font size='4'><u><b>Article4</b></u><a href="+result["response"]["docs"][3]["web_url"]+" target='_blank'>: "+result["response"]["docs"][3]["web_url"]+"</font></p>" );
+			$( "#div4" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][3]["snippet"]+"</p>" );
+			$( "#div4" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][3]["lead_paragraph"]+"</p>" );
+			$( "#div5" ).append( "<p><font size='4'><u><b>Article5</b></u><a href="+result["response"]["docs"][4]["web_url"]+" target='_blank'>: "+result["response"]["docs"][4]["web_url"]+"</font></p>" );
+			$( "#div5" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][4]["snippet"]+"</p>" );
+			$( "#div5" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][4]["lead_paragraph"]+"</p>" );
+			$( "#div6" ).append( "<p><font size='4'><u><b>Article6</b></u><a href="+result["response"]["docs"][5]["web_url"]+" target='_blank'>: "+result["response"]["docs"][5]["web_url"]+"</font></p>" );
+			$( "#div6" ).append( "<p><b>Intro</b>: "+result["response"]["docs"][5]["snippet"]+"</p>" );
+			$( "#div6" ).append( "<p><b>Snippet</b>: "+result["response"]["docs"][5]["lead_paragraph"]+"</p>" );
+		
+
+        }});
+   
+   
+   });
+});
+
+
+</script>
+</head>
+<body style="background:#CD5C5C ">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Weather Map</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="Weather.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="Time.html">Time</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div style="background:#CD5C5C">
+<div id="heading" style="margin-left:30%"><h2><u>Search for City</u></h2></div>
+	<div id ="form1" style="margin-left:30%">
+			<form action="/action_page.php" class="container-fluid"><b>
+			       Enter City Name:-</b><br>
+				<input id ="text_box" type="text" name="noOfTables"/>
+			</form>
+	</div>
+<br>
+
+
+	<div id="buttonid">
+	<div id="button2" style="margin-left:2%">
+		<button id = "getIt" style="margin-left:30%; background-color: #e7e7e7; color:red; " >Get News</button>
+	</div><br>
+	</div>
+	<div class="w3-container">
+		<div id="div1" style="margin-left:15%; margin-right:10%; background:#ffe4e1; border-style: solid;">
+
+	</div>
+	
+	<div id="div2" style="margin-left:15%; margin-right:10%; background:#ADD8E6; border-style: solid;">
+
+	</div>
+	
+	<div id="div3" style="margin-left:15%; margin-right:10%; background:#ffe4e1; border-style: solid;">
+
+	</div>
+	
+	<div id="div4" style="margin-left:15%; margin-right:10%; background:#ADD8E6; border-style: solid;">
+
+	</div>
+	
+	<div id="div5" style="margin-left:15%; margin-right:10%; background:#ffe4e1; border-style: solid;">
+
+	</div>
+		<div id="div6" style="margin-left:15%; margin-right:10%; background:#ADD8E6; border-style: solid;">
+
+	</div>
+</div>
+</div>
+
+</body>
+
+</html>
