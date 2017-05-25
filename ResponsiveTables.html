@@ -98,7 +98,8 @@ $("#submit_button").click(function() {
    for(var row =1; row <= Math.ceil(input_value/5); row ++)
    {
       $(".gridWithMultiplication tbody").append("<tr class='row"+(row-1)+"'><td id='no1'><div class='colunm1'></div></td><td id='no2'><div class='colunm2'></div></td><td id='no3'><div class='colunm3'></div></td><td id='no4'><div class='colunm4'></div></td><td id='no5'><div class='colunm5'></div></td></tr>");
-   }
+    
+  }
 
    
    var i;
@@ -114,7 +115,7 @@ $("#submit_button").click(function() {
             curCol = 4;
         }
 
-        $(".row"+curRow).find("td").eq(curCol).find("div").append("<ul>"+ i+"X"+j+"="+i*j +"</ul>");
+        $(".row"+curRow).find("td").eq(curCol).find("div").append("<ul><b>"+ i+"X"+j+"="+i*j +"</b></ul>");
 
      }
      console.log(); 
