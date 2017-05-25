@@ -8,58 +8,81 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+
+	<style>
+	#div1 {
+	background:#F08080;
+	
+	}
+	
+	</style>
+	
+	<script>
 
 
+var countries =  ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+
+
+
+/*$('#text-box').autocomplete({
+    lookup: countries,
+    onSelect: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    }
+});*/
 
 $(document).ready(function(){
 
+   $("#text_box").keyup(function() {
+	   var str="<ul>";
+	   $( "#suggesstion-box" ).empty();
+		 for(i=0; i<countries.length; i++) {
+		 
+		 
+			if(countries[i].indexOf($('#text_box').val())>=0){
+			   str+="<li>"+countries[i]+"</li>";
+			}
+			
+		 }
+		 
+        str+="</ul>";
+		
+		$( "#suggesstion-box" ).append( str );
+	});
+
 	var input_value;
 
-$("#getIt").click(function() {
-   input_value =  $('#text_box').val();
-  
-  
-  
+	$("#getIt").click(function() {
+	   input_value =  $('#text_box').val();
+		//console.log((this).input_value().length);
 
-if(input_value.length >= 3) {
-for(i=0;i<3;i++){
-   if(input_value.indexOf(countries[i])>=0) {
-   success: function(countrie[i]){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(countries[i]);
-			$("#text_box").css("background","#FFF");
-		}
+		$( "#div1" ).empty();
 		
-} 
-}
-
-}
-  console.log((this).input_value().length);
-  
-    $( "#div1" ).empty();
-	
-   console.log(input_value);
-   
-           $.ajax({url: "http://api.timezonedb.com/v2/get-time-zone?key=UHUNAPMYQ9J3&format=json&by=zone&zone="+ input_value +"", success: function(result){
-		console.log("in sucess");
-            //$("#div1").html(result);
-			console.log(result);
-			$( "#div1" ).append( "<p><font size='4'><u><b>City:-</b></u>: "+result["countryName"]+"</font></p>" );
-			$( "#div1" ).append( "<p><b>Country:-</b>: "+result["zoneName"]+"</p>" );
-			$( "#div1" ).append( "<p><b>Date and Time:-</b>: "+result["formatted"]+"</p>" );
-
-
-        }});
+		console.log(input_value);
+	   
+		$.ajax({url: "http://api.timezonedb.com/v2/get-time-zone?key=UHUNAPMYQ9J3&format=json&by=zone&zone="+ input_value +"", success: function(result){
+				console.log("in sucess");
+				//$("#div1").html(result);
+				console.log(result);
+				$( "#div1" ).append( "<p><font size='4'><u><b>City:-</b></u>: "+result["countryName"]+"</font></p>" );
+				$( "#div1" ).append( "<p><b>Country:-</b>: "+result["zoneName"]+"</p>" );
+				$( "#div1" ).append( "<p><b>Date and Time:-</b>: "+result["formatted"]+"</p>" );
+               //$( "#suggestion-box" ).append( "<p><b>Date and Time:-</b>: "+result["formatted"]+"</p>" );
+			}
+		});
+	});
    
    
-   });
+   
+   
 });
+
 
 
 </script>
 </head>
-<body style="background:#fdd3ce ">
+<body style="background:#E0FFFF ">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -74,14 +97,14 @@ for(i=0;i<3;i++){
   </div>
 </nav>
   
-<div style="background:	#fdd3ce">
+<div style="background:	#E0FFFF">
 <div id="heading" style="margin-left:35%"><h2><u>Date and Time</u></h2></div><br><br>
 	<div id ="form1" style="margin-left:34%">
-			<form action="/action_page.php" class="container-fluid"><b>
+			<form action="" class="container-fluid"><b>
 			       Enter Country and City Name:-<br>Format (Country/City)</b><br><br>
 				
 				<input id ="text_box" type="text" name="noOfTables"/>
-				<div id="suggesstion-box"></div>
+				<div id="suggesstion-box" style="background:white; margin-right:86%"></div>
 			</form>
 	</div>
 <br>
@@ -100,8 +123,7 @@ for(i=0;i<3;i++){
 	
 </div>
 </div>
-<script>
-var countries = ["England", "America", "India"];
+];
 
 </body>
 

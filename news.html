@@ -12,6 +12,23 @@
 $(document).ready(function(){
 
 	var input_value;
+$("input").keypress(function(event) {
+    if (event.which == 13) {
+	  input_value =  $('#text_box').val();
+  
+        event.preventDefault();
+		
+       // document.getElementById("form1").submit();
+		$("#getIt").trigger("click");
+    }
+	});
+});
+
+
+
+$(document).ready(function(){
+
+	var input_value;
 
 $("#getIt").click(function() {
    input_value =  $('#text_box').val();
