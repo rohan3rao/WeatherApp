@@ -14,37 +14,35 @@ ul {
    background: blue;
 }
 
-.tablerow {
-      background: yellow;
+
 }
 
-.gridWithMultiplication{
-   border: 1px solid ;
+
 }
 td{
-   border: 1px solid ;
+   
 }*/
 
 .colunm1, .colunm3, .colunm5 {
   background:#F08080;
-  border:thick;
-  border-color: black;
-  }
-  
-  .colunm2 {
-  background:#FFF5EE;
-  border:thick;
-  border-color: black;
-  }
-  
  
-  
-  .colunm4 {
-  background:#FFF5EE;
-  border:thick;
-  border-color:black;
   }
   
+  .colunm2, .colunm4 {
+  background:#FFF5EE;
+  
+  }
+  
+  #no2, #no4 {
+  background:#FFF5EE;
+  border:solid;
+  }
+  
+    #no1, #no3, #no5 {
+  background:#F08080;
+  border:solid;
+  }
+ 
   
  
 
@@ -55,16 +53,20 @@ td{
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body> 
+<body style="background:#E0FFFF"> <div style="margin-left:38%">
 <h1><u> Multiplication Tables </u></h1>
-<hr>
-<form action="/action_page.php" class="container-fluid">
-Enter no of tables you want:<br>
-<input id ="text_box" type="text" name="noOfTables"/>
-</form>
-<button id = "submit_button" styel="margin-left:10%" type="button">         Submit</button>
+<hr> </div>
+<div class="container" style="margin-left:35%">
+<form action="/action_page.php" class="form-inline">
+1) Enter no of tables you want:
+<input id ="text_box" type="text" name="noOfTables"/><br><br>
+2) Enter how many times to multiply each number:
+<input id ="text_box1" type="text" name="noOfTables"/><br><br>
 
 
+<button id = "submit_button" style="margin-left:20%; background-color: #e7e7e7; color:red;" type="button"> Submit</button>
+</form><br> <br>
+</div>
 <script>
 
 
@@ -72,13 +74,14 @@ var input_value;
 
 $("#submit_button").click(function() {
   input_value =  $('#text_box').val();
+  input_value1 =  $('#text_box1').val();
    $(".gridWithMultiplication tbody").empty();
 
    console.log(input_value);
 // no of rows
    for(var row =1; row <= Math.ceil(input_value/5); row ++)
    {
-      $(".gridWithMultiplication tbody").append("<tr class='row"+(row-1)+"'><td><div class='colunm1'></div></td><td><div class='colunm2'></div></td><td><div class='colunm3'></div></td><td><div class='colunm4'></div></td><td><div class='colunm5'></div></td></tr>");
+      $(".gridWithMultiplication tbody").append("<tr class='row"+(row-1)+"'><td id='no1'><div class='colunm1'></div></td><td id='no2'><div class='colunm2'></div></td><td id='no3'><div class='colunm3'></div></td><td id='no4'><div class='colunm4'></div></td><td id='no5'><div class='colunm5'></div></td></tr>");
    }
 
    
@@ -86,7 +89,7 @@ $("#submit_button").click(function() {
    
    for (var i=1;i<=input_value;i++){
 
-     for (var j=1;j<=10;j++){
+     for (var j=1;j<=input_value1;j++){
 
         console.log(i+"X"+j+"="+i*j);
         var curRow = Math.ceil(i/5)-1;
