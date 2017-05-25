@@ -57,24 +57,40 @@ td{
 <h1><u> Multiplication Tables </u></h1>
 <hr> </div>
 <div class="container" style="margin-left:35%">
-<form action="/action_page.php" class="form-inline">
-1) Enter no of tables you want:
-<input id ="text_box" type="text" name="noOfTables"/><br><br>
-2) Enter how many times to multiply each number:
-<input id ="text_box1" type="text" name="noOfTables"/><br><br>
+<form action="" class="form-inline" id="form1"><b>
+1) Enter no of tables you want:</b>
+<input id ="text_box" type="text" name="noOfTables"/><br><br><b>
+2) Enter how many times to multiply each number:</b>
+<input id ="text_box1" type="text" name="noOfTables"/>
 
 
-<button id = "submit_button" style="margin-left:20%; background-color: #e7e7e7; color:red;" type="button"> Submit</button>
+<button id = "submit_button" style="margin-left:; background-color: #e7e7e7; color:red;" type="button"> Submit</button>
 </form><br> <br>
 </div>
 <script>
-
+var input_value;
+$("input").keypress(function(event) {
+    if (event.which == 13) {
+	  input_value =  $('#text_box').val();
+  input_value1 =  $('#text_box1').val();
+  if(input_value1== "") {
+  input_value1=10;
+  }
+        event.preventDefault();
+		
+       // document.getElementById("form1").submit();
+		$("#submit_button").trigger("click");
+    }
+});
 
 var input_value;
 
 $("#submit_button").click(function() {
   input_value =  $('#text_box').val();
   input_value1 =  $('#text_box1').val();
+    if(input_value1== "") {
+  input_value1=10;
+  }
    $(".gridWithMultiplication tbody").empty();
 
    console.log(input_value);

@@ -3,11 +3,7 @@
 <head>
 <style>
 #div1 {
-background:#FFF8DC;
 
-
-
-}
 
 #heading {
  background:#FFF8DC;
@@ -31,16 +27,31 @@ background:#FFF8DC;
  background: #FFF8DC;
  }
  
- #demo {
 
-
- }
  
   #div2 {
  
  background:#FFF8DC;
 
  }
+ 
+ #row1{
+    display:flex;
+    flex-direction:row;
+justify-content: space-around;
+}
+
+#column1{
+    display:flex;
+    flex-direction:column;
+    background:#FFF8DC;
+}
+
+
+#column2{
+    display:flex;
+    flex-direction:column;
+}
  
  
 </style>
@@ -57,7 +68,7 @@ $(document).ready(function(){
 
 $("#getIt").click(function() {
   input_value =  $('#text_box').val();
-    $( "#div1" ).empty();
+    $( "#column1" ).empty();
   
    console.log(input_value);
    
@@ -65,19 +76,19 @@ $("#getIt").click(function() {
 		console.log("in sucess");
             //$("#div1").html(result);
 			console.log(result);
-			$( "#div1" ).append( "<p><u><b>City</b></u>: "+result["name"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Country</b></u>: "+result["sys"]["country"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Temp</b></u>: "+result["main"]["temp"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Humidity</b></u>: "+result["main"]["humidity"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Temp Max</b></u>: "+result["main"]["temp_max"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Temp Min</b></u>: "+result["main"]["temp_min"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Degree</b></u>: "+result["wind"]["deg"]+"</p>" );
-			$( "#div1" ).append( "<p><u><b>Wind Speed</b></u>: "+result["wind"]["speed"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>City</b></u>: "+result["name"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Country</b></u>: "+result["sys"]["country"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Temp</b></u>: "+result["main"]["temp"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Humidity</b></u>: "+result["main"]["humidity"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Temp Max</b></u>: "+result["main"]["temp_max"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Temp Min</b></u>: "+result["main"]["temp_min"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Degree</b></u>: "+result["wind"]["deg"]+"</p>" );
+			$( "#column1" ).append( "<p><u><b>Wind Speed</b></u>: "+result["wind"]["speed"]+"</p>" );
 					if (result["main"]["temp"] < 300) {
-    			$("#demo").html('<img src="cold-weather.gif" class="img-rounded">');
+    			$("#column2").html('<img src="cold-weather.gif" class="img-rounded">');
 
 } else {
-    			$("#demo").html('<img src="hot.gif" class="img-rounded">');
+    			$("#column2").html('<img src="hot.gif" class="img-rounded">');
 
 }
 			
@@ -134,15 +145,17 @@ $("#getIt").click(function() {
 
 
 </script>   
-	<div id="div1" style="margin-left:30%; margin-right:30%;">
+<div id="row1" style="margin-left:30%">
 
-	</div><br> <br>
-	<div id="div2">
-	<div id="demo" style="margin-left:30%;">
-</div>
+	<div id="column1">
+
+	</div>
+	
+	<div id="column2" >
+
 	</div>
 
-
+</div>
 </body>
 
 </html>
