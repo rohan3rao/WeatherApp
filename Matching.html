@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+<body><h1>Matching Letters in 2 Names </h1>
+ Enter Name 1
+    <input type="text" id="userInput1"=></input><br><br>
+ Enter Name 2   
+      <input type="text" id="userInput2"=></input>
+    <button onclick="test()">Submit</button><br><br>
+    <p id="demo"></p>
+        <p id="demo1"></p>
+
+    <script>
+        function test()
+        {    
+
+
+
+            var userInput1 = document.getElementById("userInput1").value;
+            
+            var userInput2 = document.getElementById("userInput2").value;
+            
+             var matching = "";
+             var unmatch = "";
+             var sum = "";
+	            for(i=0;i<userInput1.length;i++) {
+	            	
+	                 for(j=0; j<userInput2.length; j++) 
+	                 {
+
+	                 	if (userInput1[i] == userInput2[j]) {
+	                 		    var matching = matching + userInput2[j];
+
+	                 	}
+					 }
+
+				}
+				
+		
+				sum = userInput1.concat(userInput2);
+                 			
+                    
+                  
+
+                      var unmatching = "";
+                      var newString=sum;
+
+                      	for(j=0; j<matching.length; j++) 
+                       	{
+                       for(i=0;i<sum.length; i++) 
+                       {
+                       		if(matching[j] == sum[i])
+                       		{
+                       			//newString=sum[j].replace(matching[j],"_" )
+                       			newString = newString.replace(matching[j] , "");
+                       		}
+
+                       	} 
+
+                       }
+                      //alert(newString);
+                      //alert(sum[0]);
+                       
+                                document.getElementById("demo").innerHTML =
+                            "Matching Letters = "+  matching +"";
+    
+            
+
+            document.getElementById("demo1").innerHTML =
+                            "UnMatching Letters = "+  newString +"";
+    }
+    </script>
+</body>
+</html>
